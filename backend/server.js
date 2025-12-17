@@ -14,8 +14,17 @@ app.use(cors());
 app.use(helmet());
 app.use(morgan("dev"));
 
-app.get("/", (req, res) => {
-  res.send("Hello from the backend");
+app.get("/api/products", (req, res) => {
+  //GET ALL PRODUCTS
+
+  res.status(200).json({
+    success: true,
+    data: [
+      { id: 1, name: "Product 1" },
+      { id: 2, name: "Product 2" },
+      { id: 3, name: "Product 3" },
+    ],
+  });
 });
 
 app.listen(PORT, () => {

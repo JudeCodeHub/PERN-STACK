@@ -6,7 +6,9 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import productRoutes from "./routes/productRoutes.js";
-import { sql } from "../config/db.js";
+
+import { sql } from "./config/db.js";
+
 
 
 const app = express();

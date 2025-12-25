@@ -1,4 +1,4 @@
-import arcjet, { tokenBucket, shield, detectBot } from "arcjet";
+import arcjet, { tokenBucket, shield, detectBot } from "@arcjet/node";
 
 import "dotenv/config";
 
@@ -20,3 +20,5 @@ export const aj = arcjet({
     }),
   ],
 });
+
+export default aj;

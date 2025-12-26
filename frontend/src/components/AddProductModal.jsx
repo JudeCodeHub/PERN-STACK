@@ -15,7 +15,8 @@ function AddProductModal() {
         {/* MODAL HEADER */}
         <h3 className="font-bold text-xl mb-8">Add New Product</h3>
 
-        <form onSubmit={addProduct} className="space-y-6">
+        {/* MAIN FORM - Added ID and removed the nesting of the action buttons */}
+        <form onSubmit={addProduct} className="space-y-6" id="add_product_form">
           <div className="grid gap-6">
             {/* PRODUCT NAME INPUT */}
             <div className="form-control">
@@ -76,28 +77,29 @@ function AddProductModal() {
               </div>
             </div>
           </div>
-
-          {/* MODAL ACTIONS */}
-          <div className="modal-action">
-            <form method="dialog">
-              <button className="btn btn-ghost">Cancel</button>
-            </form>
-            <button
-              type="submit"
-              className="btn btn-primary min-w-[120px]"
-              disabled={!formData.name || !formData.price || !formData.image || loading}
-            >
-              {loading ? (
-                <span className="loading loading-spinner loading-sm" />
-              ) : (
-                <>
-                  <PlusCircleIcon className="size-5 mr-2" />
-                  Add Product
-                </>
-              )}
-            </button>
-          </div>
         </form>
+
+        {/* MODAL ACTIONS - Moved outside the form to prevent nesting */}
+        <div className="modal-action">
+          <form method="dialog">
+            <button className="btn btn-ghost">Cancel</button>
+          </form>
+          <button
+            type="submit"
+            form="add_product_form" // Connects this button to the form above
+            className="btn btn-primary min-w-[120px]"
+            disabled={!formData.name || !formData.price || !formData.image || loading}
+          >
+            {loading ? (
+              <span className="loading loading-spinner loading-sm" />
+            ) : (
+              <>
+                <PlusCircleIcon className="size-5 mr-2" />
+                Add Product
+              </>
+            )}
+          </button>
+        </div>
       </div>
 
       {/* BACKDROP */}

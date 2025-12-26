@@ -8,17 +8,18 @@ export const useProductStore = create((set, get) => ({
   products: [],
   loading: false,
   error: null,
+  currentProduct: null,
 
-formData: {
+  formData: {
     name: "",
     price: "",
     image: "",
   },
 
-setFormData: (formData) => set({ formData }),
-resetForm: () => set({ formData: { name: "", price: "", image: "" } }),
+  setFormData: (formData) => set({ formData }),
+  resetForm: () => set({ formData: { name: "", price: "", image: "" } }),
 
-addProduct: async (e) => {
+  addProduct: async (e) => {
     e.preventDefault();
     set({ loading: true });
 
@@ -36,7 +37,7 @@ addProduct: async (e) => {
     }
   },
 
-fetchProducts: async () => {
+  fetchProducts: async () => {
     set({ loading: true });
     try {
       const response = await axios.get(`${BASE_URL}/api/products`);
@@ -59,7 +60,7 @@ fetchProducts: async () => {
     }
   },
 
-deleteProduct: async (id) => {
+  deleteProduct: async (id) => {
     set({ loading: true });
     try {
       await axios.delete(`${BASE_URL}/api/products/${id}`);
@@ -67,6 +68,40 @@ deleteProduct: async (id) => {
         products: prev.products.filter((product) => product.id !== id),
       }));
       toast.success("Product deleted successfully");
+    } catch (error) {
+      toast.error("Something went wrong");
+    } finally {
+      set({ loading: false });
+    }
+  },
+
+  fetchProduct: async (id) => {
+    set({ loading: true });
+    try {
+      const response = await axios.get(`${BASE_URL}/api/products/${id}`);
+      set({
+        currentProduct: response.data,
+        formData: response.data.data,
+        error: null,
+      });
+    } catch (error) {
+      console.log(error);
+      set({ error: "Failed to fetch product", currentProduct: null });
+    } finally {
+      set({ loading: false });
+    }
+  },
+
+  updateProduct: async (id) => {
+    set({ loading: true });
+    try {
+      const { formData } = get();
+      const response = await axios.put(
+        `${BASE_URL}/api/products/${id}`,
+        formData
+      );
+      set({ currentProduct: response.data, error: null });
+      toast.success("Product updated successfully");
     } catch (error) {
       toast.error("Something went wrong");
     } finally {

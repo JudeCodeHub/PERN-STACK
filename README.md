@@ -1,35 +1,41 @@
-# 🚀 My Journey with the PERN Stack
+# PERN Stack DevOps Journey 🚀
 
-This repository documents my progress in mastering the PERN stack. Below is a breakdown of the four key technologies I have learned and how I utilize them to build full-stack web applications.
+This repository documents the transformation of a full-stack **PERN (Postgres, Express, React, Node.js)** application into a production-grade, cloud-native architecture.
 
-## 1. P - PostgreSQL (The Database)
+The project demonstrates a complete DevOps lifecycle, moving from manual deployments to fully automated CI/CD pipelines, container orchestration, and Infrastructure as Code (IaC) on AWS.
 
-* **My Key Takeaway:** I use PostgreSQL as my object-relational database system.
-* **Implementation:** I learned how to create structured tables to persist critical application data, such as user profiles, product inventories, and message logs.
+## 📌 Project Overview
 
-## 2. E - Express (The Server Framework)
+The primary goal is to implement industry-standard DevOps practices, including:
 
-* **My Key Takeaway:** I utilize Express as the web application framework for Node.js.
-* **Implementation:** I use this to handle server-side logic. I have learned to manage API routes, process incoming HTTP requests from the client, and interface securely with the database.
+* **Containerization** (Docker)
+* **Orchestration** (ECS Fargate)
+* **CI/CD Automation** (GitHub Actions)
+* **Infrastructure as Code** (Terraform)
+* **Observability** (CloudWatch, Logging)
 
-## 3. R - React (The Frontend)
+## 🛠️ DevOps Implementation Roadmap
 
-* **My Key Takeaway:** I use React to build dynamic and responsive user interfaces.
-* **Implementation:** This allows me to create the visual layer that users interact with. I have learned to manage state and send asynchronous requests to my Express server to fetch or save data.
+Below is the breakdown of the 9 core infrastructure projects implemented in this repository.
 
-## 4. N - Node.js (The Runtime)
+| # | Project / Milestone | Implementation Details | Key Technologies |
+| :--- | :--- | :--- | :--- |
+| **01** | **Manual AWS Deployment** | Deploying the monolithic application on an AWS EC2 instance. Configuring **Nginx** as a reverse proxy and managing application processes with **PM2**. | AWS EC2, Nginx, Linux CLI, PM2 |
+| **02** | **Containerization** | Creating optimized Dockerfiles for the Node.js backend and React frontend. Orchestrating the local development environment using **Docker Compose**. | Docker, Docker Compose, Multi-stage Builds |
+| **03** | **CI/CD Automation** | Building automated pipelines to test, build, and push code changes. Implementing workflows to ensure code quality before integration. | GitHub Actions, YAML, Linting |
+| **04** | **Image Management** | Configuring **AWS ECR** (Elastic Container Registry) to store and version control the Docker images for secure production deployment. | AWS ECR, AWS CLI, IAM Permissions |
+| **05** | **Cloud Database Migration** | Migrating the local PostgreSQL database to a managed **AWS RDS** instance. Configuring Security Groups and VPC peering for secure connectivity. | AWS RDS (Postgres), VPC Security Groups |
+| **06** | **Container Orchestration** | Deploying the backend microservice on **AWS ECS (Fargate)**. configuring an **Application Load Balancer (ALB)** to manage traffic and auto-scaling. | AWS ECS Fargate, ALB, Target Groups |
+| **07** | **Frontend CDN Hosting** | Hosting the static React frontend on **AWS S3** and distributing it globally using **CloudFront** (CDN) with custom SSL configuration. | AWS S3, CloudFront, Route53, ACM |
+| **08** | **Infrastructure as Code** | Provisioning the entire AWS infrastructure (VPC, Subnets, ECS, RDS) programmatically using **Terraform** state management. | Terraform, HCL, AWS Provider |
+| **09** | **Observability & Security** | Implementing centralized logging, metrics monitoring, and security scanning (DevSecOps) to ensure system reliability. | CloudWatch, SonarQube, Trivy |
 
-* **My Key Takeaway:** I rely on Node.js as my JavaScript runtime environment.
-* **Implementation:** This enables me to run JavaScript outside the browser. It serves as the foundation for my Express server and powers the build tools required for React.
+## 📂 Repository Structure
 
----
-
-### 🔄 The Architecture I Built
-
-To connect these technologies, I implemented the following workflow:
-
-1. **React** initiates a request (e.g., "Get user data") from the client side.
-2. **Node.js** executes the **Express** server, which captures this request.
-3. **Express** queries **PostgreSQL** to retrieve the specific data points.
-4. **PostgreSQL** returns the requested data to the server.
-5. **Express** sends the formatted response back to **React** for rendering.
+```bash
+├── client/              # React Frontend Application
+├── server/              # Node.js Backend Application
+├── .github/workflows/   # CI/CD Pipeline Configurations
+├── terraform/           # Infrastructure as Code (IaC) scripts
+├── docker-compose.yml   # Local Container Orchestration
+└── README.md            # Project Documentation

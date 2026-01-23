@@ -29,13 +29,3 @@ Below is the breakdown of the 9 core infrastructure projects implemented in this
 | **07** | **Frontend CDN Hosting** | Hosting the static React frontend on **AWS S3** and distributing it globally using **CloudFront** (CDN) with custom SSL configuration. | AWS S3, CloudFront, Route53, ACM |
 | **08** | **Infrastructure as Code** | Provisioning the entire AWS infrastructure (VPC, Subnets, ECS, RDS) programmatically using **Terraform** state management. | Terraform, HCL, AWS Provider |
 | **09** | **Observability & Security** | Implementing centralized logging, metrics monitoring, and security scanning (DevSecOps) to ensure system reliability. | CloudWatch, SonarQube, Trivy |
-
-## 📂 Repository Structure
-
-```bash
-├── client/              # React Frontend Application
-├── server/              # Node.js Backend Application
-├── .github/workflows/   # CI/CD Pipeline Configurations
-├── terraform/           # Infrastructure as Code (IaC) scripts
-├── docker-compose.yml   # Local Container Orchestration
-└── README.md            # Project Documentation
